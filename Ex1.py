@@ -73,7 +73,7 @@ def runTester():
                       myinput["buildingName"] + "  " + myinput["outputName"] + "  outputFormTEster.log"])
 
 
-def candidateElevators(call):
+def optionalElevators(call):
     """
     check candidate elevators that can take the call
     :param call:
@@ -115,16 +115,16 @@ def candidateElevators(call):
     return temp
 
 
-def calculateTime(elev: Elevators, src: int) -> float:
-    """
-    check how much time take to the elevator to get to the call
-    :param elev:
-    :param src:
-    :return: how much time take for the elevator to get the call
-    """
-    distance = abs(elev.currentFloor - src)
-    time = (distance / elev.speed) + elev.openTime + elev.closeTime + elev.startTime + elev.stopTime
-    return time
+# def calculateTime(elev: Elevators, src: int) -> float:
+#     """
+#     check how much time take to the elevator to get to the call
+#     :param elev:
+#     :param src:
+#     :return: how much time take for the elevator to get the call
+#     """
+#     distance = abs(elev.currentFloor - src)
+#     time = (distance / elev.speed) + elev.openTime + elev.closeTime + elev.startTime + elev.stopTime
+#     return time
 
 
 def cmd(time: int):
@@ -155,11 +155,11 @@ def allocateAnElevator(call):
     :return: void
     """
     temp = []
-    temp = candidateElevators(call)
-    relevant = calculateTime(temp[0], call.src)
+    temp = optionalElevators(call)
+    relevant = temp[0].calculateTime(call.src)#calculateTime(temp[0], call.src)
     elev = temp[0]
     for e in temp:
-        min = calculateTime(e, call.src)
+        min = e.calculateTime(call.src)#calculateTime(e, call.src)
         if relevant > min:
             relevant = min
             elev = e

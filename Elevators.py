@@ -38,6 +38,17 @@ class Elevators:
         for i in self.destList.queue:
             i *= self.state
 
+    def calculateTime(self, src: int) -> float:
+        """
+        check how much time take to the elevator to get to the call
+        :param elev:
+        :param src:
+        :return: how much time take for the elevator to get the call
+        """
+        distance = abs(self.currentFloor - src)
+        time = (distance / self.speed) + self.openTime + self.closeTime + self.startTime + self.stopTime
+        return time
+
     def __str__(self):
         return f"id: {self.id}, state: {self.state};;"
 
