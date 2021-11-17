@@ -16,27 +16,27 @@ class Elevators:
 
         self.currentFloor = 0
         self.startTime = 0
-        self.state = 0  # 1 Up, -1 DOWN, 0 LEVEL
+        self.type = 0
 
-        self.destList = PriorityQueue()
-        self.destList.put(0)  # [floor]
-        self.dest = self.destList.get()
+        self.req = PriorityQueue()
+        self.req.put(0)  # [floor]
+        self.dest = self.req.get()
 
-        self.stoptime = self.startTime + self.stopTime + self.openTime + self.closeTime
+        self.doors = self.startTime + self.stopTime + self.openTime + self.closeTime
 
     def updetDest(self):
-        if not self.destList.empty():
-            if self.state == -1:
-                self.dest = -1 * self.destList.get()
+        if not self.req.empty():
+            if self.type == -1:
+                self.dest = -1 * self.req.get()
             else:
-                self.dest = self.destList.get()
+                self.dest = self.req.get()
         else:
-            self.state = 0
+            self.type = 0
         return self.dest
 
     def sortDestList(self):
-        for i in self.destList.queue:
-            i *= self.state
+        for i in self.req.queue:
+            i *= self.type
 
     def calculateTime(self, src: int) -> float:
         """
@@ -46,11 +46,11 @@ class Elevators:
         :return: how much time take for the elevator to get the call
         """
         distance = abs(self.currentFloor - src)
-        time = (distance / self.speed) + self.openTime + self.closeTime + self.startTime + self.stopTime
+        time = (distance / self.speed) + self.openTime*7 + self.closeTime + self.startTime + self.stopTime
         return time
 
     def __str__(self):
-        return f"id: {self.id}, state: {self.state};;"
+        return f"id: {self.id}, state: {self.type};;"
 
     def __repr__(self):
-        return f"id: {self.id}, state: {self.state};;"
+        return f"id: {self.id}, state: {self.type};;"

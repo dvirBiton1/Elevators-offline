@@ -7,7 +7,7 @@ import subprocess
 
 # a simple global counter, if we did not find elevator to take the call is give that call for the elevator in the
 # counter
-counter = 0
+optional = 0
 
 
 # for run: python Ex1.py input\Ex1_Buildings\B2.json input\Ex1_Calls\Calls_a.csv myOutput.csv
@@ -59,7 +59,7 @@ def writeCalls():
     dataCalls = []
     for k in calls:
         dataCalls.append(k.__dict__.values())
-    with open(myinput["outputName"], 'w', newline="") as fu:
+    with open(path["outputName"], 'w', newline="") as fu:
         csvwriter = csv.writer(fu)
         csvwriter.writerows(dataCalls)
 
@@ -70,7 +70,7 @@ def runTester():
     :return:void
     """
     subprocess.Popen(["powershell.exe", "java -jar lib\Ex1_checker_V1.2_obf.jar 1111,2222,3333 " +
-                      myinput["buildingName"] + "  " + myinput["outputName"] + "  outputFormTEster.log"])
+                      path["buildingName"] + "  " + path["outputName"] + "  outputFormTEster.log"])
 
 
 def optionalElevators(call):
@@ -79,53 +79,28 @@ def optionalElevators(call):
     :param call:
     :return: list of the candidate elevators, their are the baste optional elevators
     """
-    global counter
-    temp = []
+    global optional
+    optional_list = []
     if call.type == 1:
         for e in building.elevators:
-            if e.state == call.type and e.currentFloor < call.src:
-                temp.append(e)
+            if e.type == call.type and e.currentFloor < call.src:
+                optional_list.append(e)
     elif call.type == -1:
         for e in building.elevators:
-            if e.state == call.type and e.currentFloor > call.src:
-                temp.append(e)
+            if e.type == call.type and e.currentFloor > call.src:
+                optional_list.append(e)
     for e in building.elevators:
-        if e.destList.empty():
-            temp.append(e)
-    if len(temp) == 0:
-        if call.type == 1:
-            for e in building.elevators:
-                if e.state == 1:
-                    temp.append(e)
-        elif call.type == -1:
-            for e in building.elevators:
-                if e.state == -1:
-                    temp.append(e)
-    if len(temp) == 0:
+        if e.req.empty():
+            optional_list.append(e)
+    if not optional_list:
         for e in building.elevators:
-            if e.state == call.type:
-                temp.append(e)
-    if len(temp) == 0:
-        while True:
-            counter = counter % len(building.elevators)
-            if building.elevators[counter].state != call.type:
-                break
-        temp.append(building.elevators[counter])
-        counter += 1
-    return temp
-
-
-# def calculateTime(elev: Elevators, src: int) -> float:
-#     """
-#     check how much time take to the elevator to get to the call
-#     :param elev:
-#     :param src:
-#     :return: how much time take for the elevator to get the call
-#     """
-#     distance = abs(elev.currentFloor - src)
-#     time = (distance / elev.speed) + elev.openTime + elev.closeTime + elev.startTime + elev.stopTime
-#     return time
-
+            if e.type == call.type:
+                optional_list.append(e)
+    if not optional_list:
+        optional = optional % len(building.elevators)
+        optional_list.append(building.elevators[optional])
+        optional += 1
+    return optional_list
 
 def cmd(time: int):
     """
@@ -134,62 +109,62 @@ def cmd(time: int):
     :return: void
     """
     for e in building.elevators:
-        if e.state == 1 and e.startTime <= time:
+        if e.type == 1 and e.startTime <= time:
             e.currentFloor += e.speed
             if e.currentFloor >= e.dest:
                 e.currntFloor = e.updetDest()
                 e.startTime = time + e.stopTime
-        elif e.state == -1 and e.startTime <= time:
+        elif e.type == -1 and e.startTime <= time:
             e.currentFloor -= e.speed
             if e.currentFloor <= e.dest:
                 e.currntFloor = e.updetDest()
                 e.startTime = time + e.stopTime
-        if e.destList.empty():
+        if e.req.empty():
             e.dest = 0
 
 
-def allocateAnElevator(call):
+def best_elevator(call):
     """
     allocate the elevator for the call
     :param call:
     :return: void
     """
-    temp = []
-    temp = optionalElevators(call)
-    relevant = temp[0].calculateTime(call.src)#calculateTime(temp[0], call.src)
-    elev = temp[0]
-    for e in temp:
-        min = e.calculateTime(call.src)#calculateTime(e, call.src)
-        if relevant > min:
-            relevant = min
+    optional_list = []
+    optional_list = optionalElevators(call)
+    best = optional_list[0].calculateTime(call.src)
+    elev = optional_list[0]
+    for e in optional_list:
+        min = e.calculateTime(call.src)
+        if best > min:
+            best = min
             elev = e
-    elev.destList.put(call.src)
-    elev.destList.put(call.dest)
-    elev.state = call.type
+    elev.req.put(call.src)
+    elev.req.put(call.dest)
+    elev.type = call.type
     elev.sortDestList()
     call.elevator = elev.id
 
 
-def algorithm():
+def offline_algorithm():
     """
     charge for the algorithm work, get call and allocate for it an elevator
     :return: void
     """
-    index = 0
+    num_of_calls = 0
     endTime = int(calls[-1].time) + 2
     for time in range(endTime):
         cmd(time)
-        while int(calls[index].time) + 1 == time:
-            allocateAnElevator(calls[index])
-            index += 1
-            if index == len(calls):
+        while int(calls[num_of_calls].time) + 1 == time:
+            best_elevator(calls[num_of_calls])
+            num_of_calls += 1
+            if num_of_calls == len(calls):
                 break
 
 
 if __name__ == "__main__":
-    myinput = inputs()
-    building = Building(myinput["buildingName"])
-    calls = readCalls(myinput["callsName"])
-    algorithm()
+    path = inputs()
+    building = Building(path["buildingName"])
+    calls = readCalls(path["callsName"])
+    offline_algorithm()
     writeCalls()
     runTester()
