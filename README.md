@@ -28,4 +28,4 @@ if there is some calls in the same second we choose the right elevator to the ca
 
 
 #*uml*
-![]https://ibb.co/Lx648Rw
+![image](https://user-images.githubusercontent.com/35407628/142432576-9d55ff58-7a0f-43ff-9c76-77eec52374f6.png)
