@@ -24,8 +24,6 @@ if we have new call we search elevators that will pass this floor in its action 
 we save this potential elevators and find the best elevator of them that will take this call the fastest.
 if there is some calls in the same second we choose the right elevator to the calls and then moving second ahead.
 
-# clases:
 
-
-#*uml*
-![image](https://user-images.githubusercontent.com/35407628/142432576-9d55ff58-7a0f-43ff-9c76-77eec52374f6.png)
+# *uml*
+![image](https://user-images.githubusercontent.com/35407628/142432802-3f5cc0f9-fbe7-426f-8adf-259be1ed6d3a.png)
