@@ -12,24 +12,25 @@ optional = 0
 
 # for run: python Ex1.py input\Ex1_Buildings\B2.json input\Ex1_Calls\Calls_a.csv out.csv
 # ^^the function to write from the terminal just change the building and calls
+
+
 def inputs():
     """
     input the building and the calls from the terminal
     :return: dictionary
     """
-    if len(sys.argv) == 1:
-        di = {
-            "buildingName": "input\Ex1_Buildings\B1.json",
-            "callsName": "input\Ex1_Calls\Calls_a.csv",
-            "outputName": "out.csv"
-        }
-    else:
+    if len(sys.argv) == 4:
         di = {
             "buildingName": sys.argv[1],
             "callsName": sys.argv[2],
             "outputName": sys.argv[3]
         }
-
+    else:
+        di = {
+            "buildingName": "input\Ex1_Buildings\B2.json",
+            "callsName": "input\Ex1_Calls\Calls_a.csv",
+            "outputName": "out.csv"
+        }
     return di
 
 
@@ -102,6 +103,7 @@ def optionalElevators(call):
         optional += 1
     return optional_list
 
+
 def cmd(time: int):
     """
     the cmd charge for the routine of the elevators
@@ -163,6 +165,7 @@ def offline_algorithm():
 
 if __name__ == "__main__":
     path = inputs()
+    ###if you want change the building and calls go to line 30-31###
     building = Building(path["buildingName"])
     calls = readCalls(path["callsName"])
     offline_algorithm()
