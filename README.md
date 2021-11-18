@@ -57,5 +57,5 @@ for example:
 
 
 
-you can make your own csv and json files that contains calls and parameters of the elevators and run the code to choose for your own situation../
+you can make your own csv and json files that contains calls and parameters of the elevators and run the code to choose for your own situation.
 
