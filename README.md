@@ -13,7 +13,7 @@ so we choose to use a "greedy algorithm" that find for the request what is the c
 
 this is the main source that we learn about this problem:
 1. https://thinksoftware.medium.com/elevator-system-design-a-tricky-technical-interview-question-116f396f2b1c - elevator system design from medium
-2. https://www.youtube.com/watch?v=xOayymoIl8U&ab_channel=SpanningTree - youtube videos that sum veriaty of algoritems for elevetors
+2. https://www.youtube.com/watch?v=xOayymoIl8U&ab_channel=SpanningTree - YouTube videos that sum verity of algorithms for elevators
 3. https://www.youtube.com/watch?v=JXqVvmBOyyQ&ab_channel=Intertent - another youtube video about elevator design.
 
 
