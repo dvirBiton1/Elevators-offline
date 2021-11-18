@@ -39,16 +39,16 @@ if there is some calls in the same second we choose the right elevator to the ca
 ![Uml](https://user-images.githubusercontent.com/35407628/142432892-1a4e34bf-bc48-4258-85bd-465122c5a0e7.png)
 
 # *how to use the code*
-if you want to use the code do the next steps:
-1. download the files from the git./
-2.run the code and see the result./
-*you have two chose to run the code:*./
-  1.run the tester and the code -> it will return out file and show you the result in the terminal./
-  To do that you need to run to commend "python Ex1.py (path to the building)./
-  input\Ex1_Buildings\B5.json (path to the calls) input\Ex1_Calls\Calls_c.csv (the out file name) out.csv"../
-  the function "runTester" do it all together./
-  2.run just the code, and it makes "out.csv" file./
+if you want to use the code do the next steps: \
+1. download the files from the git \
+2.run the code and see the result \
+*you have two chose to run the code:* \
+  1.run the tester and the code -> it will return out file and show you the result in the terminal \
+  To do that you need to run to commend "python Ex1.py (path to the building) \
+  input\Ex1_Buildings\B5.json (path to the calls) input\Ex1_Calls\Calls_c.csv (the out file name) out.csv" \
+  the function "runTester" do it all together \
+  2.run just the code, and it makes "out.csv" file \
 
-then you can enter to the terminal command in phychram and run the tester simulation from there by writing:./
+then you can enter to the terminal command in phychram and run the tester simulation from there by writing: \
 
-you can make your own csv and json files that contains calls and parameters of the elevators and run the code to choose for your own./ situation.
+you can make your own csv and json files that contains calls and parameters of the elevators and run the code to choose for your own situation. \
