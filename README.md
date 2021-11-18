@@ -28,4 +28,4 @@ if there is some calls in the same second we choose the right elevator to the ca
 
 
 #*uml*
-![](../../../Desktop/ex1/Uml.png)
+![]https://ibb.co/Lx648Rw
