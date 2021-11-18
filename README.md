@@ -36,3 +36,15 @@ if there is some calls in the same second we choose the right elevator to the ca
 # *uml*
 
 ![Uml](https://user-images.githubusercontent.com/35407628/142432892-1a4e34bf-bc48-4258-85bd-465122c5a0e7.png)
+
+# *how to use the code*
+if you want use and check the code do the next steps:
+1. download the files from the git
+
+2.run the code and see the result.\
+you have two chose to run the code:\
+1.run the tester and the code -> it will return out file and show you the result in the terminal.\
+To do that you need to run to commend "python Ex1.py (path to the building) input\Ex1_Buildings\B5.json (path to the calls) input\Ex1_Calls\Calls_c.csv (the out file name) out.csv".
+the function "runTester" do it all together.\
+2.run just the code, and it makes just out file.\
+To do that just go to Ex1 and run him it will create a new file of csv.

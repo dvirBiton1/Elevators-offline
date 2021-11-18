@@ -10,7 +10,7 @@ import subprocess
 optional = 0
 
 
-# for run: python Ex1.py input\Ex1_Buildings\B2.json input\Ex1_Calls\Calls_a.csv myOutput.csv
+# for run: python Ex1.py input\Ex1_Buildings\B2.json input\Ex1_Calls\Calls_a.csv out.csv
 # ^^the function to write from the terminal just change the building and calls
 def inputs():
     """
@@ -19,9 +19,9 @@ def inputs():
     """
     if len(sys.argv) == 1:
         di = {
-            "buildingName": "input\Ex1_Buildings\B3.json",
-            "callsName": "input\Ex1_Calls\Calls_c.csv",
-            "outputName": "myOutput.csv"
+            "buildingName": "input\Ex1_Buildings\B1.json",
+            "callsName": "input\Ex1_Calls\Calls_a.csv",
+            "outputName": "out.csv"
         }
     else:
         di = {
@@ -69,8 +69,8 @@ def runTester():
     run the tester
     :return:void
     """
-    subprocess.Popen(["powershell.exe", "java -jar lib\Ex1_checker_V1.2_obf.jar 1111,2222,3333 " +
-                      path["buildingName"] + "  " + path["outputName"] + "  outputFormTEster.log"])
+    subprocess.Popen(["powershell.exe", "java -jar lib\Ex1_checker_V1.2_obf.jar 318765856,316080514 " +
+                      path["buildingName"] + "  " + path["outputName"] + " out.log"])
 
 
 def optionalElevators(call):
