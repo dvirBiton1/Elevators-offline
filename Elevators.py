@@ -20,8 +20,6 @@ class Elevators:
         self.req.put(0)  # [floor]
         self.dest = self.req.get()
 
-        self.doors = self.startTime + self.stopTime + self.openTime + self.closeTime
-
     def updetDest(self):
         if not self.req.empty():
             if self.type == -1:
