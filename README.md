@@ -26,4 +26,5 @@ if there is some calls in the same second we choose the right elevator to the ca
 
 
 # *uml*
-![image](https://user-images.githubusercontent.com/35407628/142432802-3f5cc0f9-fbe7-426f-8adf-259be1ed6d3a.png)
+
+![Uml](https://user-images.githubusercontent.com/35407628/142432892-1a4e34bf-bc48-4258-85bd-465122c5a0e7.png)
