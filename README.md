@@ -48,7 +48,8 @@ if you want to use the code do the next steps:
        input\Ex1_Buildings\B5.json (path to the calls) input\Ex1_Calls\Calls_c.csv (the out file name) out.csv".
       the function "runTester" do it all together.\
       b) run just the code, and it makes "out.csv" file.\
-      then you can enter to the terminal command  and run the tester simulation from there by writing:
+      then you can enter to the terminal command  and run the tester simulation from by writing:
+      
 3. you would see in the terminal line the result of your chosen situation and the average time waiting for a person.
 in the csv file called out.csv you will see the ID of the chosen elevator for any calls in it.\
 for example:
