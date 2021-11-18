@@ -1,13 +1,14 @@
 # Elevators-offline
 In this assignment we get a building with some floors and elevators, and we need to design in the best way the requests of the people that want to use the elevators.
-in our input files we get csv file of all the request we need to design and the parameters of the building floors and number of elevators.
+in our input files we get csv file of all the request and the parameters of the building floors we need to design it in the best way.
 
-this problem is an offline, because we got all of our data, and we calculate the output before the elevator
+this problem is an offline algorithem problem, because we got all of our data before, and we calculate the output for the future action od the elevator
 
+# our reaserch
 when we search about this problem we find some idea of algorithms that we can use to find the best way to sort the calls to the elevators.
-the most effective algorithm that we taught to use is the "Travelling Salesman problem"
-but complexity of this algorithm is: 2^n and for a big amount of calls it will take a lot of time to find the design of the request
-
+the most effective algorithm that we thought to use is the "Travelling Salesman problem"
+the complexity of this algorithm is: 2^n and for a big amount of calls and elevators it will take a lot of time to find the design of the request.
+<br> 
 so we choose to use a "greedy algorithm" that find for the request call what is the closest elevator that will take this call the fastest.
 <br>
 
@@ -23,6 +24,13 @@ In our algorithm we scan over every second from the first call to the last and s
 if we have new call we search elevators that will pass this floor in its action or elevators that have no calls to answer at all.
 we save this potential elevators and find the best elevator of them that will take this call the fastest.
 if there is some calls in the same second we choose the right elevator to the calls and then moving second ahead.
+
+1. we scan for every second if there is a new call in the building
+2. if we have a new call - we update the location of each elevator and it's parameters about its direction and next floor
+3. the program choose the elevators that potentials to complete this call fast 
+4. from this group of elevators we find in step 3, we calculate the fastest call that will answer about this call
+5. we update the new value of the chosen elevator with the new call it can be answer
+6. we check if there are more calls to answer. if there isn't - we continue to move the time forward
 
 
 # *uml*
