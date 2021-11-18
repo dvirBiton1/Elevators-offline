@@ -131,10 +131,10 @@ def best_elevator(call):
     """
     optional_list = []
     optional_list = optionalElevators(call)
-    best = optional_list[0].calculateTime(call.src)
+    best = optional_list[0].calculateTime(call)
     elev = optional_list[0]
     for e in optional_list:
-        min = e.calculateTime(call.src)
+        min = e.calculateTime(call)
         if best > min:
             best = min
             elev = e

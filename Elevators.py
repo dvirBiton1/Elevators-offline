@@ -1,7 +1,6 @@
 from CallForElevator import CallForElevator
 from queue import PriorityQueue
 
-
 class Elevators:
     def __init__(self, di, index):
         self.id = int(di["_id"])
@@ -12,7 +11,6 @@ class Elevators:
         self.openTime = float(di["_openTime"])
         self.startTime = float(di["_startTime"])
         self.stopTime = float(di["_stopTime"])
-        self.index = index
 
         self.currentFloor = 0
         self.startTime = 0
@@ -38,15 +36,16 @@ class Elevators:
         for i in self.req.queue:
             i *= self.type
 
-    def calculateTime(self, src: int) -> float:
+    def calculateTime(self, call: CallForElevator):
         """
         check how much time take to the elevator to get to the call
         :param elev:
-        :param src:
+        :param call:
         :return: how much time take for the elevator to get the call
         """
-        distance = abs(self.currentFloor - src)
-        time = (distance / self.speed) + self.openTime*7 + self.closeTime + self.startTime + self.stopTime
+        dis_call = abs(call.src - call.dest)
+        dis_current = abs(self.currentFloor - call.src)
+        time = (dis_current / self.speed) + self.openTime*5 + self.closeTime + self.startTime + self.stopTime + (dis_call / self.speed)
         return time
 
     def __str__(self):
