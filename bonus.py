@@ -20,8 +20,10 @@ def drawLines():
 
     i = width
     while i <= size:
-        w.create_line(i, 0, i, size, fill="blue", width=3)
+        w.create_line(i, 0, i, size, fill="black", width=3)
         i += width
+    w.create_line(0, 0 , 1, size, fill="black", width=10)
+    
 
 
 if __name__ == "__main__":
