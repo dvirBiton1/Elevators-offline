@@ -38,6 +38,12 @@ if there is some calls in the same second we choose the right elevator to the ca
 
 ![Uml](https://user-images.githubusercontent.com/35407628/142432892-1a4e34bf-bc48-4258-85bd-465122c5a0e7.png)
 
+# the algorithm results: 
+
+
+![image](https://user-images.githubusercontent.com/35407628/142595875-33ae948c-c1a6-434f-94c3-6f5e1ca7723b.png)
+
+
 # *how to use the code*
 if you want to use the code do the next steps:
 1. download the files from the git
