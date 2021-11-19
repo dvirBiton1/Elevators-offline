@@ -25,45 +25,12 @@ for i in range(0, 720, 60):
 elev0 =canvas.create_rectangle(200, 600, 250, 540 , fill="green")
 elev1 =canvas.create_rectangle(0, 600, 50, 540 , fill="green")
 call =readcalls()
-for c in call:
-
-
 
 for i in range(0, 60, 1):
     canvas.move(elev1, 0,1)
     t.sleep(0.1)
     root.update()
 
-
-
-def left(event):
-    x = -10
-    y = 0
-    canvas.move(my_ob, x, y)
-
-
-def right(event):
-    x = 10
-    y = 0
-    canvas.move(my_ob, x, y)
-
-
-def up(event):
-    x = 0
-    y = -1
-    canvas.move(my_ob, x, y)
-
-
-def down(event):
-    x = 0
-    y = 1
-    canvas.move(my_ob, x, y)
-
-
-root.bind("<Left>", left)
-root.bind("<Right>", right)
-root.bind("<Up>", up)
-root.bind("<Down>", down)
 
 start = tk.Button(root, text="Start now", padx=10, pady=5, fg="white", bg="#263d42")
 start.pack()
