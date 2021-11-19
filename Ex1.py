@@ -147,7 +147,7 @@ def best_elevator(call):
     call.elevator = elev.id
 
 
-def writeElevatorPos(elevsPos):
+def write_elevator_for_bonus(elevsPos):
     with open("bonus.csv", 'w', newline="") as fu:
         csvwriter = csv.writer(fu)
         csvwriter.writerows(elevsPos)
@@ -157,31 +157,18 @@ def offline_algorithm():
     charge for the algorithm work, get call and allocate for it an elevator
     :return: void
     """
-    elevsPos = [[building.minFloor, building.maxFloor]]
+    bonus = [[building.minFloor, building.maxFloor]]
     num_of_calls = 0
     endTime = int(calls[-1].time) + 2
     for time in range(endTime):
         cmd(time)
-        elevsPos.append([int(e.currentFloor) for e in building.elevators])
+        bonus.append([int(e.currentFloor) for e in building.elevators])
         while int(calls[num_of_calls].time) + 1 == time:
             best_elevator(calls[num_of_calls])
             num_of_calls += 1
             if num_of_calls == len(calls):
                 break
-    writeElevatorPos(elevsPos)
-# def algorithm():
-#     elevsPos = [[building.minFloor,building.maxFloor]]
-#     index = 0
-#     endTime = int(calls[-1].time) + 1
-#     for time in range(endTime):
-#         cmd(time)
-#         elevsPos.append([int(e.currentFloor) for e in building.elevators])
-#         while int(calls[index].time) <= time:
-#             allocateAnElevator(calls[index])
-#             index += 1
-#             if index == len(calls):
-#                 break
-#     writeElevatorPos(elevsPos)
+    write_elevator_for_bonus(bonus)
 
 if __name__ == "__main__":
     path = inputs()
