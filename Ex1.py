@@ -27,7 +27,7 @@ def inputs():
         }
     else:
         di = {
-            "buildingName": "input\Ex1_Buildings\B2.json",
+            "buildingName": "input\Ex1_Buildings\B1.json",
             "callsName": "input\Ex1_Calls\Calls_a.csv",
             "outputName": "out.csv"
         }
@@ -146,29 +146,20 @@ def best_elevator(call):
     elev.sortDestList()
     call.elevator = elev.id
 
-
-def write_elevator_for_bonus(elevsPos):
-    with open("bonus.csv", 'w', newline="") as fu:
-        csvwriter = csv.writer(fu)
-        csvwriter.writerows(elevsPos)
-
 def offline_algorithm():
     """
     charge for the algorithm work, get call and allocate for it an elevator
     :return: void
     """
-    bonus = [[building.minFloor, building.maxFloor]]
     num_of_calls = 0
     endTime = int(calls[-1].time) + 2
     for time in range(endTime):
         cmd(time)
-        bonus.append([int(e.currentFloor) for e in building.elevators])
         while int(calls[num_of_calls].time) + 1 == time:
             best_elevator(calls[num_of_calls])
             num_of_calls += 1
             if num_of_calls == len(calls):
                 break
-    write_elevator_for_bonus(bonus)
 
 if __name__ == "__main__":
     path = inputs()
